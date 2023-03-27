@@ -1,0 +1,1271 @@
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*|||||||||| Default settings (Immersion Theater - 6816 x 2240) ||||||||||*/
+/*|||||||||| (Lines up with the bevel grid lines in the Theater ||||||||||*/
+/*|||||||||| (Works for any screen with ratios similar to 27:9) ||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/* (Aspect ratios greater than 15/7) */
+:root {
+  /* body and .main-container properties */
+  --body-overflow: hidden;
+  --background-color: #000000;
+  --text-color: #FFFFFF;
+  --link-color: #CC0000;
+  --link-color-hover: #CCCCCC;
+  --button-color-hover: #666666;
+  --outermost-padding: 100px;
+  --main-container-display: grid; // grid for large-scale to laptop, block for smaller
+  --main-container-grid-areas:
+    "matrix main-txt"
+    "link main-txt";
+  --heading-font-family: 'Titillium Web', sans-serif;
+  --paragraph-font-family: 'Roboto', sans-serif;
+  --heading-line-height: 1.1; // Default = 1.2
+  --paragraph-line-height: 1.3; // Default = 1.2
+  --center-position: center; // For centering in various properties
+  --horizontal-center-margins: 0; // For horizontally centering
+  // .main-container will have 4 grid cells in landscape layouts, 6 in portrait layouts
+  // --left-col-width: 87.5vw; // 7/8
+  // --right-col-width: 12.5vw; // 1/8
+  --left-col-width: calc(100vw - 1100px);
+  --right-col-width: 1100px;
+  --top-row-height: 85.714vh; // 6/7
+  --middle-row-height: 0vh; // 0/7
+  --bottom-row-height: 14.286vh; // 1/7
+  --main-cont-row-heights: var(--top-row-height) var(--bottom-row-height);
+
+  /* .main-txt properties */
+  --main-txt-display: block;
+  --main-txt-grid-areas: "";
+  --main-txt-row-spacing: none;
+  --main-txt-heading-margin: 75px 0;
+  --main-txt-bg-color: rgb(0, 0, 0, 0.8); // Black, 80% opacity
+  --max-main-line-length: 1090px;
+  --main-title-size: 156px;
+  --main-researcher-name-size: 96px;
+  --main-desc-size: 48px;
+  --main-link-size: 36px;
+  --main-txt-padding: 0 75px 0 75px;
+  --main-desc-padding-left: 0px;
+  --main-desc-margin: initial;
+
+  /* .matrix properties */
+  --matrix-padding: 0;
+  --matrix-item-side-length: 70%; // Matrix items are squares/circles
+  --matrix-item-max-side-length: 25vh; // Make no wider/taller than 1/4 of vh
+  --matrix-item-gap: 0px; // Horizontal and vertical
+  --matrix-col-spacing: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; // 7 columns
+  --matrix-row-spacing: 1fr 1fr 1fr; // 3 rows
+  --matrix-width: 75%;
+  --max-matrix-width: 6000px;
+  --matrix-overflow: hidden;
+
+  /* .popup properties - overall */
+  --popup-transform: translateY(-50%) translateX(-50%);
+  --popup-flex-flow: row nowrap; // For whole popup
+  --popup-width: 65%;
+  --popup-height: 71.429vh; // 5/7
+  --popup-min-height: auto;
+  --popup-max-width: 3500px;
+  --popup-left-position: calc(var(--left-col-width) / 2);
+  --popup-top-position: calc(var(--top-row-height) / 2);
+  --popup-bg-color: rgba(0, 0, 0, .8);
+  --popup-border: 6px solid rgba(255, 255, 255, 100);
+  --popup-border-radius: 25px;
+  --popup-shadow: 0px 0px 15px 5px rgba(0, 0, 0, .25); // offset x, offset y, blur radius, spread radius
+  --popup-button-display: none;
+  --popup-prev-button-transform: translateY(0%) translateX(-100%);
+  --popup-next-button-transform: translateY(0%) translateX(100%);
+  /* .popup properties - text */
+  --popup-txt-inner-padding: 75px;
+  --popup-heading-margin: 75px 0 75px 0;
+  --popup-title-size: 120px;
+  --popup-story-size: 48px;
+  --popup-txt-area-width: 40%;
+  --popup-txt-area-height: 100%;
+  /* .popup properties - image */
+  --popup-img-inner-padding: 75px;
+  --popup-img-flex-flow: row-reverse nowrap; // For img subsection
+  --popup-img-primary-secondary-gap: 0 5% 0 0; // Padding between primary-img and secondary-img-slides
+  --popup-secondary-img-flex-flow: column nowrap;
+  --popup-img-area-width: 60%;
+  --popup-img-area-height: 100%;
+  --popup-primary-img-width: auto;
+  --popup-primary-img-height: auto;
+  --popup-primary-img-max-width: 75%;
+  --popup-primary-img-max-height: 100%;
+  --popup-secondary-img-slides-width: 25%;
+  --popup-secondary-img-slides-height: 100%;
+  --popup-secondary-img-width: auto;
+  --popup-secondary-img-height: auto;
+  --popup-secondary-img-max-width: 100%;
+  --popup-secondary-img-max-height: 20%;
+
+  /* .imm-sch-url-container properties */
+  --imm-sch-cont-position: relative;
+  --imm-sch-cont-height: initial;
+  --imm-sch-cont-width: initial;
+  --imm-sch-cont-padding-top: 0px;
+  --imm-sch-url-bg-color: rgba(0, 0, 0, 0); // transparent
+  --imm-sch-url-vertical-align: center;
+  --imm-sch-url-vertical-align-percentage: 62.5%;
+  --imm-sch-url-size: 24px;
+  --imm-sch-url-display: inline; // inline or block
+  --logo-display: inline-block; // inline-block or block
+  --max-logo-height: 110px;
+}
+
+/* The root element */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Element containing .main-container */
+body {
+  margin: 0;
+  overflow: var(--body-overflow);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Class to remove element from page flow */
+.removed {
+  display: none !important;
+}
+
+/*
+ * Class containing the matrix, main-txt, and main-url classes,
+ * all organized in a grid layout
+ */
+.main-container {
+  align-content: center;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  display: var(--main-container-display);
+  grid-template-areas: var(--main-container-grid-areas);
+  grid-template-columns: var(--left-col-width) var(--right-col-width);
+  grid-template-rows: var(--main-cont-row-heights);
+  justify-content: center;
+  overflow: visible;
+}
+
+/* Clips the main-container when zoomed in and popup is displayed */
+.main-container.clipped {
+  overflow: hidden;
+  height: auto;
+}
+
+/* Main (collection) title, researcher name, and project titles */
+h1, h2, h3 {
+  font-family: var(--heading-font-family);
+  line-height: var(--heading-line-height);
+}
+
+/* All body text */
+p {
+  font-family: var(--paragraph-font-family);
+  line-height: var(--paragraph-line-height);
+}
+
+/* All links */
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+/* Keeps visited links the same color as unvisted links */
+a:visited {
+  color: var(--link-color);
+}
+
+/* Makes links being hovered on a different color */
+a:hover {
+  color: var(--link-color-hover);
+}
+
+/* Makes alt text conform to style of body text */
+img {
+  font-family: var(--paragraph-font-family);
+  font-size: var(--main-desc-size);
+}
+
+
+/**********************************************************************/
+/******************** Main text area ********************/
+/**********************************************************************/
+/*
+ * Container for main (collection) title, researcher name,
+ * description, and Immersive Scholar logo
+ */
+.main-txt {
+  padding: var(--main-txt-padding);
+  margin: var(--horizontal-center-margins);
+  grid-area: main-txt;
+  background-color: var(--main-txt-bg-color);
+  z-index: 10;
+  display: var(--main-txt-display);
+  grid-template-areas: var(--main-txt-grid-areas);
+  grid-template-rows: var(--main-txt-row-spacing);
+  position: relative;
+  overflow: auto;
+
+  // Flex properties
+  order: 2;
+}
+
+/* Title of the researcher's collection of work */
+.main-title {
+  font-size: var(--main-title-size);
+  margin: var(--main-txt-heading-margin);
+  font-weight: 700;
+  grid-area: title;
+}
+
+/* Name of the researcher */
+.researcher-name {
+  font-size: var(--main-researcher-name-size);
+  margin: var(--main-txt-heading-margin);
+  grid-area: name;
+}
+
+/* Paragraph describing the collection of work */
+.main-desc {
+  font-size: var(--main-desc-size);
+  grid-area: desc;
+  padding-left: var(--main-desc-padding-left);
+  margin: var(--main-desc-margin);
+}
+
+/* Actual URL to the collection */
+.main-url {
+  font-size: var(--main-link-size);
+  grid-area: url;
+}
+
+
+/**********************************************************************/
+/******************** Matrix ********************/
+/**********************************************************************/
+/* Container for all the matrix items */
+.matrix {
+  width: var(--left-col-width);
+  display: grid;
+  grid-template-columns: var(--matrix-col-spacing);
+  grid-gap: var(--matrix-item-gap);
+  align-items: var(--center-position);
+  grid-area: matrix;
+  overflow: var(--matrix-overflow);
+  position: relative; // So z-index will work
+  z-index: 1; // Put it behind popup, main-txt, and imm-sch-url-container
+  padding: var(--matrix-padding);
+
+  // Flex properties
+  order: 1;
+  flex: 1;
+}
+
+/* Individual cell in the matrix */
+.matrix-item {
+  width: var(--matrix-item-side-length);
+  max-width: var(--matrix-item-max-side-length);
+  justify-self: var(--center-position);
+  transition: 1s;
+  transform: scale(1.0);
+}
+
+/* Matrix items grow slightly when hovered on */
+.matrix-item:hover {
+  cursor: pointer;
+  z-index: 100;
+  transition: 1s;
+  transform: scale(1.25);
+}
+
+
+
+/**********************************************************************/
+/******************** Popup ********************/
+/**********************************************************************/
+/* Wrapper div that enables popup scrolling on a fixed BG */
+.overlay {
+  position: fixed;
+    top: 0;
+    left: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition-property: visibility;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+/* Class to make overlay visible only in popup mode */
+.overlay.visible {
+  visibility: visible;
+  z-index: 100;
+
+  pointer-events: auto;
+
+  transition-property: visibility;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+/* Container for matrix item title, story, images, and URL */
+.matrix-popup {
+  z-index: 100;
+  border: var(--popup-border);
+  background-color: var(--popup-bg-color);
+  border-radius: var(--popup-border-radius);
+  display: flex;
+  position: absolute;
+  flex-flow: var(--popup-flex-flow);
+  justify-content: var(--center-position);
+  align-items: var(--center-position);
+  width: var(--popup-width);
+  height: var(--popup-height);
+  min-height: var(--popup-min-height);
+  max-width: var(--popup-max-width);
+  box-shadow: var(--popup-shadow);
+
+  left: var(--popup-left-position);
+  top: var(--popup-top-position);
+  transform: var(--popup-transform);
+
+  pointer-events: none;
+  opacity: 0;
+
+  transition-property: opacity;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+  // TODO create a variable for this?
+  margin-bottom: 25px;
+}
+
+/* Class to fade matrix-popup in/out */
+.matrix-popup.visible {
+  pointer-events: auto;
+  opacity: 1;
+
+  transition-property: opacity;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+/* Buttons for changing projects in a popup and closing a popup */
+.popup-button {
+  color: var(--text-color);
+  background-color: rgba(0, 0, 0, 0); // Should have no BG
+  font-family: var(--paragraph-font-family);
+  font-size: calc(var(--popup-story-size) * 2.5);
+  display: var(--popup-button-display);
+  position: absolute;
+  transition: .25s;
+  transform: scale(1.0);
+}
+
+/* Hover state for popup buttons */
+.popup-button:hover {
+  cursor: pointer;
+  color: var(--button-color-hover);
+  transition: .25s;
+  font-size: calc(var(--popup-story-size) * 2.75);;
+}
+
+/* Button to go to prev project in popup */
+#prev-button {
+  left: 0px;
+  padding: 0px 15px; // Increase clickable area
+  margin: 0px -15px;
+  transform: var(--popup-prev-button-transform);
+}
+
+/* Button to go to next project in popup */
+#next-button {
+  right: 0px;
+  padding: 0px 15px; // Increase clickable area
+  margin: 0px -15px;
+  transform: var(--popup-next-button-transform);
+}
+
+/* Button to close popup in interactive display */
+#close-button {
+  border-width: 0;
+  right: 45px;
+  top: 30px;
+  padding: 0px 15px; // Increase clickable area
+  margin: 0px -15px;
+  transform: translateY(-55%) translateX(55%);
+}
+
+/* Area of matrix popup containing primary image and secondary images */
+.popup-img-area {
+  padding: var(--popup-img-inner-padding);
+  justify-self: var(--center-position);
+  align-self: var(--center-position);
+  display: flex;
+  flex-flow: var(--popup-img-flex-flow);
+  align-items: var(--center-position);
+  box-sizing: border-box;
+  width: var(--popup-img-area-width);
+  height: var(--popup-img-area-height);
+  justify-content: center;
+}
+
+/* The main (and largest) image of a matrix item */
+#primary-popup-img {
+  width: var(--popup-primary-img-width);
+  height: var(--popup-primary-img-height);
+  max-width: var(--popup-primary-img-max-width);
+  max-height: var(--popup-primary-img-max-height);
+}
+
+/* Container for all the secondary images of a matrix item */
+.secondary-img-slides {
+  padding: var(--popup-img-primary-secondary-gap);
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: var(--popup-secondary-img-flex-flow);
+  align-items: var(--center-position);
+  justify-content: space-evenly;
+  width: var(--popup-secondary-img-slides-width);
+  height: var(--popup-secondary-img-slides-height);
+}
+
+/* Class for a single secondary image */
+.secondary-img {
+  width: var(--popup-secondary-img-width);
+  height: var(--popup-secondary-img-height);
+  max-width: var(--popup-secondary-img-max-width);
+  max-height: var(--popup-secondary-img-max-height);
+  cursor: pointer;
+  transition: .25s;
+  transform: scale(1.0);
+}
+
+// TODO fix this - scaling causes popup to shift slightly
+/* Hover state for secondary-img */
+.secondary-img:hover {
+  transition: .25s;
+  transform: scale(1.25);
+}
+
+/* Area of matrix popup containing item title, story, and URL */
+.popup-txt-area {
+  padding: var(--popup-txt-inner-padding);
+  align-self: var(--center-position);
+  justify-self: var(--center-position);
+  box-sizing: border-box;
+  width: var(--popup-txt-area-width);
+  height: var(--popup-txt-area-height);
+}
+
+/* Title of the selected matrix item */
+.project-title {
+  font-size: var(--popup-title-size);
+  margin: var(--popup-heading-margin);
+}
+
+/* "Story"/explanation of the selected matrix item */
+.project-story {
+  font-size: var(--popup-story-size);
+}
+
+
+/**********************************************************************/
+/******************** Immersive Scholar URL ********************/
+/**********************************************************************/
+/* Container for the URL to the Immersion Scholar project website */
+.imm-sch-url-container {
+  grid-area: link;
+  align-self: var(--imm-sch-url-vertical-align);
+  background-color: var(--imm-sch-url-bg-color);
+  z-index: 10;
+  box-sizing: border-box;
+  height: var(--imm-sch-cont-height);
+  width: var(--imm-sch-cont-width);
+  // padding-top: var(--imm-sch-cont-padding-top);
+  padding: 0 0 0 75px;
+  position: var(--imm-sch-cont-position);
+  margin: 0;
+
+  // Flex properties
+  order: 3;
+}
+
+/* Immersive Scholar logo */
+#logo {
+  max-height: var(--max-logo-height);
+  display: var(--logo-display);
+  margin-right: 15px;
+}
+
+/* URL for the Immersive Scholar project that appears outside of .main-txt */
+.imm-sch-url {
+  font-size: var(--imm-sch-url-size);
+  display: var(--imm-sch-url-display);
+  vertical-align: var(--imm-sch-url-vertical-align-percentage);
+  margin: 0;
+}
+
+
+
+
+
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*|||||||||| All other large-scale displays (min-height: 2100px) ||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
+/**********************************************************************/
+/******************** For narrower landscape layouts ********************/
+/**********************************************************************/
+/* (Aspect ratios between 15/7 and 18/7) */
+@media (max-aspect-ratio: 18/7) and (min-height: 2100px) {
+  :root {
+    /* .popup properties */
+    --popup-title-size: 114px;
+    --popup-story-size: 42px;
+  }
+}
+
+/* (Aspect ratios between 8/5 and 15/7) */
+@media (max-aspect-ratio: 15/7) and (min-height: 2100px) {
+  :root {
+    /* .popup properties */
+    --popup-story-size: 36px;
+  }
+}
+
+
+/**********************************************************************/
+/******************** For other large-scale displays (square/portrait) ********************/
+/**********************************************************************/
+/* For a "square" or "nearly square" (landscape) layout */
+/* (Aspect ratios between 1/1 and 8/5) */
+@media (max-aspect-ratio: 8/5) and (min-height: 2100px) {
+  :root {
+    /* body and .main-container properties */
+    --main-container-display: flex;
+    --left-col-width: 100vw; // 1/1
+    --right-col-width: 0vw; // 0/1
+    --top-row-height: 60vh; // 3/5
+    --middle-row-height: 30vh; // 7/20
+    --bottom-row-height: 10vh; // 1/20
+
+    /* .main-txt properties */
+    --main-txt-display: grid;
+    --main-txt-grid-areas:
+      "title desc"
+      "name desc"
+      "url desc";
+    --main-txt-row-spacing: auto auto 1fr;
+    --main-txt-heading-margin: 0px 0px 25px 0px;
+    --main-title-size: 144px;
+    --main-researcher-name-size: 84px;
+    --main-desc-size: 42px;
+    --main-txt-padding: 75px calc(75px + (50vw - 1050px));
+    --main-desc-padding-left: 75px;
+    --main-desc-margin: 0px;
+
+    /* .matrix properties */
+    --matrix-width: 100%;
+    --matrix-item-side-length: 80%; // Matrix items are squares/circles
+
+    /* .popup properties - overall */
+    --popup-width: 95%;
+    --popup-height: 50vh;
+    /* .popup properties - text */
+    --popup-heading-margin: 0px;
+    --popup-title-size: 108px;
+    --popup-story-size: 30px;
+    /* .popup properties - image */
+
+    /* .imm-sch-url-container properties */
+    --imm-sch-cont-height: 10vh;
+    --imm-sch-cont-padding-top: 2.5vh;
+    --imm-sch-url-vertical-align-percentage: 55%;
+    --imm-sch-url-size: 24px;
+    --imm-sch-url-bg-color: rgba(0, 0, 0, .8);
+    --imm-sch-url-display: inline; // inline or block
+    --logo-display: inline; // inline-block or block
+  }
+
+  .main-container {
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .main-container.clipped {
+    height: 100vh;
+  }
+
+  .main-txt {
+    height: auto;
+  }
+
+  .imm-sch-url-container {
+    height: auto;
+    padding: var(--main-txt-padding);
+    padding-top: 0;
+    align-self: flex-start;
+    width: 100%;
+  }
+}
+
+/* For a wider "portrait" layout */
+/* (Aspect ratios between 5/7 and 1/1) */
+@media (max-aspect-ratio: 1/1) and (min-height: 2100px) {
+  :root {
+    /* body and .main-container properties */
+    --horizontal-center-margins: 0;
+
+    /* .main-txt properties */
+    --max-main-line-length: 800px;
+    --main-title-size: 120px;
+    --main-researcher-name-size: 72px;
+    --main-desc-size: 36px;
+    --main-link-size: 24px;
+
+    /* .matrix properties */
+    // --main-txt-padding: 75px;
+    --main-txt-padding: 50px calc(50px + (50vw - 750px));
+    --matrix-col-spacing: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    --matrix-row-spacing: 1fr 1fr 1fr;
+    --matrix-width: 100%;
+    --max-matrix-width: 100%;
+
+    /* .popup properties */
+    --popup-flex-flow: row nowrap;
+    --popup-width: 90vw; // Am not sure why this has to be here
+    --popup-max-width: 90vw; // 9/10
+    /* .popup properties - text */
+    --popup-txt-inner-padding: 75px;
+    --popup-title-size: 84px;
+    --popup-story-size: 24px;
+    --popup-txt-area-width: 40%;
+    --popup-txt-area-height: 100%;
+    /* .popup properties - image */
+    --popup-img-flex-flow: row-reverse nowrap; // For img subsection
+    --popup-secondary-img-flex-flow: column nowrap;
+    --popup-img-area-width: 60%;
+    --popup-img-area-height: 100%;
+    --popup-primary-img-width: auto;
+    --popup-primary-img-height: auto;
+    --popup-primary-img-max-width: 75%;
+    --popup-primary-img-max-height: 100%;
+    --popup-secondary-img-slides-width: 25%;
+    --popup-secondary-img-slides-height: 100%;
+    --popup-secondary-img-width: auto;
+    --popup-secondary-img-height: auto;
+    --popup-secondary-img-max-width: 100%;
+    --popup-secondary-img-max-height: 25%;
+
+    /* .imm-sch-url-container properties */
+    --imm-sch-url-vertical-align: center;
+    --imm-sch-url-vertical-align-percentage: 40%;
+    --imm-sch-url-display: inline-table; // inline or block
+    --logo-display: inline-block; // inline-block or block
+    --max-logo-height: 80px;
+  }
+}
+
+// TODO fix this - popup is too short for the longest stories
+/* For an even narrower "portrait" layout */
+/* (Aspect ratios between 11/21 and 5/7) */
+@media (max-aspect-ratio: 5/7) and (min-height: 2100px) {
+  :root {
+    /* body and .main-container properties */
+    --horizontal-center-margins: 0 auto;
+    --main-container-grid-areas:
+      "matrix matrix"
+      "main-txt desc"
+      "link link";
+    --top-row-height: 77.5vh;
+    --middle-row-height: 17.5vh;
+    --bottom-row-height: 5vh;
+
+    /* .main-txt properties */
+    //--main-txt-padding: 50px;
+    --main-txt-padding: 50px calc(50px + (50vw - 550px));
+    --main-txt-heading-margin: 0px 0px 15px 0px;
+    --main-title-size: 84px;
+    --main-researcher-name-size: 48px;
+    --main-desc-size: 24px;
+    --main-link-size: 12px;
+
+    /* .matrix properties */
+    --matrix-item-side-length: 45%;
+    --matrix-col-spacing: 1fr 1fr 1fr;
+    --matrix-row-spacing: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    /* .popup properties */
+    --popup-flex-flow: column nowrap;
+    --popup-height: 70vh;
+    /* .popup properties - text */
+    --popup-txt-inner-padding: 0 75px 75px 75px;
+    --popup-txt-area-width: 100%;
+    --popup-txt-area-height: 55%;
+    --popup-title-size: 78px;
+    --popup-story-size: 30px;
+    /* .popup properties - image */
+    --popup-img-area-width: 100%;
+    --popup-img-area-height: 45%;
+
+    /* .imm-sch-url-container properties */
+    --imm-sch-cont-height: 5vh;
+    --imm-sch-cont-padding-top: 1.25vh;
+    --imm-sch-url-vertical-align-percentage: 55%;
+    --imm-sch-url-size: 12px;
+    --max-logo-height: 50px;
+  }
+}
+
+// TODO fix this - popup is too short for the longest stories
+/* The narrowest "portrait" layouts */
+/* (Aspect ratios below 11/21) */
+@media (max-aspect-ratio: 11/21) and (min-height: 2100px) {
+  :root {
+    /* body and .main-container properties */
+    --main-container-grid-areas:
+      "matrix"
+      "main-txt"
+      "link";
+    --left-col-width: 100vw; // 1/1
+    --right-col-width: 0vw; // 0/1
+    --top-row-height: 70vh; // 7/10
+    --middle-row-height: 22.5vh; // 1/4
+    --bottom-row-height: 7.5vh; // 1/20
+
+    /* .main-txt properties */
+    --main-txt-padding: 25px calc(25px + (50vw - 300px));
+    --main-txt-display: block;
+    --main-txt-grid-areas: "";
+    --main-txt-heading-margin: 0px 0px 25px 0px;
+    --main-desc-padding-left: 0px;
+
+    /* .matrix properties */
+    --matrix-item-side-length: 45%;
+
+    /* .popup properties - overall */
+    --popup-width: 90%;
+    --popup-height: 65vh;
+    --popup-max-width: 1300px;
+    --popup-left-position: 50%;
+    --popup-top-position: 35%;
+    /* .popup properties - text */
+    --popup-heading-margin: 0px;
+    --popup-title-size: 72px;
+    --popup-story-size: 30px;
+    --popup-txt-area-width: 100%;
+    --popup-txt-area-height: 50%;
+    /* .popup properties - image */
+    --popup-img-flex-flow: column nowrap;
+    --popup-secondary-img-flex-flow: row nowrap;
+    --popup-img-area-width: 100%;
+    --popup-img-area-height: 50%;
+    --popup-img-primary-secondary-gap: 5% 0 0 0;
+    --popup-primary-img-max-width: 100%;
+    --popup-primary-img-max-height: 75%;
+    --popup-secondary-img-slides-width: 100%;
+    --popup-secondary-img-slides-height: 25%;
+    --popup-secondary-img-max-width: 25%;
+    --popup-secondary-img-max-height: 100%;
+
+    /* .imm-sch-url-container properties */
+    --imm-sch-url-size: 12px;
+    --imm-sch-url-display: block; // inline or block
+    --max-logo-height: 50px;
+  }
+}
+
+
+
+
+
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||  Personal devices (with scrolling capabilities)  ||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
+// TODO set better max-height
+/**********************************************************************/
+/******************** For large desktops (e.g. 4K display) ********************/
+/**********************************************************************/
+/* For any personal device wider than 2560px */
+@media (max-height: 2099px) {
+  :root {
+    /* body and .main-container properties */
+    --left-col-width: 75vw; // 3/4
+    --right-col-width: 25vw; // 1/4
+    --top-row-height: 90vh; // 9/10
+    --bottom-row-height: 10vh; // 1/10
+
+    /* .main-txt properties */
+    --main-txt-bg-color: rgba(0, 0, 0, 0.8);
+    --main-txt-heading-margin: 0 0 25px 0;
+    --main-txt-padding: 40px;
+    --main-title-size: 60px;
+    --main-researcher-name-size: 30px;
+    --main-desc-size: 18px;
+    --main-link-size: 12px;
+
+    /* .matrix properties */
+    --matrix-item-gap: 25px 0px;
+    --matrix-overflow: auto; // Scroll if clipped
+    --matrix-col-spacing: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    --matrix-row-spacing: 1fr 1fr 1fr;
+
+    /* .popup properties */
+    --min-popup-line-length: 38.672vw;
+    --max-popup-line-length: 45.313vw;
+    --popup-flex-flow: row nowrap;
+    --popup-border: 10px solid rgba(255, 255, 255, 100);
+    --popup-border-radius: 10px;
+    --popup-max-width: 65vw; // 13/20
+    --popup-height: 75vh;
+    --popup-border: 4px solid rgba(255, 255, 255, 100);
+    --popup-button-display: block;
+    /* .popup properties - text */
+    --popup-heading-margin: 0;
+    --popup-title-size: 48px;
+    --popup-story-size: 18px;
+
+    /* .imm-sch-url-container properties */
+    --imm-sch-url-vertical-align-percentage: 52.5%;
+    --imm-sch-url-size: 10px;
+    --max-logo-height: 40px;
+  }
+}
+
+/* For a 4K display - between 2560px and 2000px wide */
+@media (max-width: 2560px) and (max-height: 2099px) {
+  :root {
+      /* body and .main-container properties */
+      /* .main-txt properties */
+      /* .matrix properties */
+      /* .popup properties - overall */
+      /* .popup properties - text */
+      --popup-img-inner-padding: 4%;
+      /* .popup properties - image */
+      --popup-txt-inner-padding: 4%;
+
+      /* .imm-sch-url-container properties */
+  }
+}
+
+/* For a smaller desktop - between 2000px and 1440px wide */
+@media (max-width: 2000px) and (max-height: 2099px) {
+  :root {
+      /* body and .main-container properties */
+
+      /* .main-txt properties */
+      --main-desc-size: 16px;
+
+      /* .matrix properties */
+
+      /* .popup properties - overall */
+      --popup-width: 75vw;
+      /* .popup properties - text */
+      --popup-title-size: 42px;
+      --popup-story-size: 16px;
+      /* .popup properties - image */
+
+      /* .imm-sch-url-container properties */
+  }
+}
+
+/**********************************************************************/
+/******************** For large laptop ********************/
+/**********************************************************************/
+/* Between 1440px and 1024px wide */
+@media (max-width: 1440px) and (max-height: 2099px)  {
+  :root {
+    /* body and .main-container properties */
+    --left-col-width: 70vw; // 7/10
+    --right-col-width: 30vw; // 3/10
+
+    /* .main-txt properties */
+    --main-title-size: 52px;
+    --main-researcher-name-size: 24px;
+    --main-desc-size: 14px;
+    --main-link-size: 10px;
+
+    /* .matrix properties */
+    /* .popup properties - overall */
+    --popup-width: 60vw;
+    --popup-prev-button-transform: translateY(0%) translateX(-87.5%);
+    --popup-next-button-transform: translateY(0%) translateX(87.5%);
+    /* .popup properties - text */
+    --popup-txt-area-width: 50%;
+    --popup-txt-area-height: 100%;
+    --popup-title-size: 36px;
+    --popup-story-size: 14px;
+    /* .popup properties - image */
+    --popup-img-area-width: 50%;
+    --popup-img-area-height: 100%;
+    --popup-img-primary-secondary-gap: 5% 0 0 0;
+    --popup-primary-img-max-width: 100%;
+    --popup-primary-img-max-height: 75%;
+    --popup-secondary-img-slides-width: 100%;
+    --popup-secondary-img-slides-height: 25%;
+    --popup-secondary-img-max-width: 20%;
+    --popup-secondary-img-max-height: 100%;
+    --popup-img-flex-flow: column nowrap; // For img subsection
+    --popup-secondary-img-flex-flow: row nowrap;
+
+    /* .imm-sch-url-container properties */
+  }
+}
+
+
+/**********************************************************************/
+/******************** For laptop ********************/
+/**********************************************************************/
+/* Between 1024px and 768px wide */
+@media (max-width: 1024px) and (max-height: 2099px)  {
+  :root {
+    /* body and .main-container properties */
+    --main-container-grid-areas:
+      "matrix main-txt";
+    --left-col-width: 60vw; // 3/5
+    --right-col-width: 40vw; // 2/5
+    --top-row-height: 100vh;
+    --bottom-row-height: 0vh;
+
+    /* .main-txt properties */
+    --main-txt-padding: 25px;
+    --main-txt-heading-margin: 15px 0px;
+
+    /* .matrix properties */
+    --matrix-padding: 25px 0px;
+    --matrix-col-spacing: 1fr 1fr 1fr;
+    --matrix-row-spacing: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    /* .popup properties - overall */
+    --popup-flex-flow: column nowrap; // For whole popup
+    --popup-width: 47.5%;
+    --popup-height: 95vh; // 19/20
+    --popup-prev-button-transform: translateY(0%) translateX(-80%);
+    --popup-next-button-transform: translateY(0%) translateX(80%);
+    /* .popup properties - text */
+    --popup-txt-inner-padding: 0px 25px 25px 25px;
+    --popup-txt-area-width: 100%;
+    --popup-txt-area-height: 50%;
+    /* .popup properties - image */
+    --popup-img-inner-padding: 25px;
+    --popup-img-area-width: 80%;
+    --popup-img-area-height: 50%;
+
+    /* .imm-sch-url-container properties */
+    --imm-sch-cont-width: 40vw;
+    --imm-sch-cont-position: fixed;
+    --imm-sch-url-bg-color: rgb(0, 0, 0, 0);
+    --max-logo-height: 30px;
+    --imm-sch-url-display: block; // inline or block
+    --logo-display: block; // inline-block or block
+  }
+
+  .imm-sch-url-container {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+/**********************************************************************/
+/******************** For tablet ********************/
+/**********************************************************************/
+/* Between 768px and 425px wide */
+@media (max-width: 768px) and (max-height: 2099px)  {
+  :root {
+    /* body and .main-container properties */
+    --body-overflow: auto;
+    --horizontal-center-margins: 0 auto;
+    --main-container-display: block; // grid for large-scale to laptop, block for smaller
+    --left-col-width: 100vw; // width of matrix
+
+    /* .main-txt properties */
+    --main-txt-bg-color: rgb(0, 0, 0, 0);
+    --main-txt-padding: 25px var(--matrix-left-right-gap); // so main-txt lines up w/ matrix-item
+    --main-title-size: 60px;
+    --main-researcher-name-size: 36px;
+    --main-desc-size: 18px;
+    --main-link-size: 14px;
+
+    /* .matrix properties */
+    // Gap: (matrix-width - number-of-cols * matrix-item-width) / number-of-gaps
+    // There are 6 gaps - 1 on the left and 1 on the right of each matrix-item
+    --matrix-padding: 0;
+    --matrix-left-right-gap: calc((100vw - 3 * 23.4375vw) / 6);
+    --matrix-col-spacing: 1fr 1fr 1fr;
+    --matrix-row-spacing: 1fr 1fr 1fr 1fr 1fr 1fr;
+    --matrix-overflow: visible;
+
+    /* .popup properties */
+    --popup-transform: translateY(0%) translateX(-50%);
+    --popup-flex-flow: column nowrap;
+    --popup-width: 75%;
+    --popup-min-height: 90vh;
+    --popup-max-width: 75vw;
+    --popup-height: auto;
+    --popup-left-position: 50%;
+    --popup-top-position: 25px;
+    --popup-prev-button-transform: translateY(0%) translateX(-100%);
+    --popup-next-button-transform: translateY(0%) translateX(100%);
+    /* .popup properties - text */
+    --popup-title-size: 36px;
+    --popup-story-size: 18px;
+    /* .popup properties - image */
+    --popup-img-primary-secondary-gap: 0 0 0 5%;
+    --popup-primary-img-max-width: 75%;
+    --popup-primary-img-max-height: 100%;
+    --popup-secondary-img-slides-width: 20%;
+    --popup-secondary-img-slides-height: 45vw;
+    --popup-secondary-img-max-width: 100%;
+    --popup-secondary-img-max-height: 20%;
+    --popup-img-flex-flow: row nowrap; // For img subsection
+    --popup-secondary-img-flex-flow: column nowrap;
+
+    /* .imm-sch-url-container properties */
+    --imm-sch-cont-width: 100vw;
+    --imm-sch-cont-position: static;
+    --max-logo-height: 45px;
+    --imm-sch-url-size: 12px;
+    --main-url-separate-display: none; // URL that appears outside of .main-txt
+  }
+}
+
+
+/**********************************************************************/
+/******************** For larger mobile device ********************/
+/**********************************************************************/
+@media (max-width: 600px) and (max-height: 2099px)  { // Check pointer size/type too?
+  :root {
+    /* body and .main-container properties */
+    /* .main-txt properties */
+    /* .matrix properties */
+    /* .popup properties */
+    --popup-prev-button-transform: translateY(0%) translateX(-80%);
+    --popup-next-button-transform: translateY(0%) translateX(80%);
+    /* .popup properties - text */
+    --popup-title-size: 30px;
+    --popup-story-size: 16px;
+    /* .popup properties - image */
+    --popup-img-primary-secondary-gap: 5% 0 0 0;
+    --popup-primary-img-max-width: 100%;
+    --popup-primary-img-max-height: 75%;
+    --popup-secondary-img-slides-width: 100%;
+    --popup-secondary-img-slides-height: auto;
+    --popup-secondary-img-max-width: 20%;
+    --popup-secondary-img-max-height: 100%;
+    --popup-img-flex-flow: column nowrap; // For img subsection
+    --popup-secondary-img-flex-flow: row nowrap;
+
+    /* .imm-sch-url-container properties */
+    --max-logo-height: 35px;
+  }
+}
+
+/**********************************************************************/
+/******************** For medium mobile device ********************/
+/**********************************************************************/
+@media (max-width: 375px) and (max-height: 2099px)  { // Check pointer size/type too?
+  :root {
+    /* body and .main-container properties */
+    /* .main-txt properties */
+    --main-title-size: 54px;
+    --main-researcher-name-size: 36px;
+    /* .matrix properties */
+    /* .popup properties */
+    --popup-prev-button-transform: translateY(0%) translateX(-70%);
+    --popup-next-button-transform: translateY(0%) translateX(70%);
+    /* .imm-sch-url-container properties */
+  }
+}
+
+/**********************************************************************/
+/******************** For small mobile device ********************/
+/**********************************************************************/
+@media (max-width: 320px) and (max-height: 2099px)  { // Check pointer size/type too?
+  :root {
+    /* body and .main-container properties */
+    /* .main-txt properties */
+    --main-title-size: 48px;
+    --main-researcher-name-size: 30px;
+    --main-desc-size: 16px;
+    --main-link-size: 14px;
+    /* .matrix properties */
+    /* .popup properties */
+    /* .imm-sch-url-container properties */
+  }
+}
+
+
+
+
+
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*|||||||||||||||||||||||||||  Special cases |||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+/*
+ * iPearl Immersion Theater (6816 x 2240):
+ * - main-txt is narrower than usual to fit in a column two tiles wide.
+ * - matrix is shifted to line up with the 7 x 3 gridlines.
+ */
+@media (width: 6816px) and (height: 2240px)  {
+  :root {
+  }
+}
+
+/*
+ * Visualization Wall (3840 x 1518):
+ * - Needs to adhere to the "picket fence" layout.
+ * - Also includes two "pattern" columns in the popup that contain a closeup
+ *   of the tessellation being viewed.
+ */
+@media (width: 3840px) and (height: 1518px)  {
+  :root {
+    /* body and .main-container properties */
+    --main-container-display: block;
+    --left-col-width: 100vw; // width of matrix
+
+    /* .main-txt properties */
+    --main-txt-padding: 445px 32px 0 32px;
+    --main-title-size: 58px;
+    --main-researcher-name-size: 36px;
+    --main-link-size: 12px;
+
+    /* .matrix properties */
+    --matrix-item-max-side-length: 400px;
+
+    /* .popup properties - overall */
+    --popup-width: 2021.5px;
+    --popup-transform: translateY(0%) translateX(50%);
+    // --popup-border: 6px solid rgba(255, 255, 255, 100);
+    --popup-border-radius: 0px;
+    --popup-button-display: none;
+    /* .popup properties - text */
+    --popup-txt-inner-padding: 0px;
+    --popup-title-size: 42px;
+    --popup-txt-area-width: calc(406px - 64px);
+    --popup-txt-area-height: auto;
+    /* .popup properties - image */
+    --popup-img-area-width: 800px;
+    --popup-img-area-height: 1062.5px;
+    --popup-img-inner-padding: 0px;
+    --popup-primary-img-width: 350px;
+    --popup-img-primary-secondary-gap: 0px 32px;
+    --popup-secondary-img-max-height: 152.3px;
+    --popup-secondary-img-slides-height: 1062.5px;
+    /* .imm-sch-url-container properties */
+    --imm-sch-url-size: 12px;
+    --imm-sch-url-display: block;
+  }
+
+  .main-txt, .imm-sch-url-container {
+    position: absolute;
+      left: 610.84px;
+    width: 406px;
+    box-sizing: border-box;
+  }
+
+  .main-txt {
+    height: 100vh;
+  }
+
+  .matrix {
+    height: 100vh;
+  }
+
+  .overlay {
+    display: flex;
+    align-items: center;
+  }
+
+  .matrix-popup {
+    max-height: 1214px;
+    position: static;
+    margin-bottom: 0;
+    border-width: 6px 0px 6px 0px;
+    margin-left: 197px;
+    padding: 32px;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  .popup-txt-area {
+    position: absolute;
+      left: calc(610px + 32px);
+      top: 410px;
+  }
+
+  .secondary-img-slides {
+    position: absolute;
+      left: 569px;
+      top: 0;
+  }
+
+  .popup-img-area {
+    position: absolute;
+      left: calc(610px + 32px);
+    display: block;
+  }
+
+  .pattern {
+    width: 203px;
+    height: calc(100% - 64px);
+    position: absolute;
+    background-position: center;
+    background-size: 1100px;
+  }
+
+  #pattern-1 {
+    left: 0;
+  }
+
+  #pattern-2 {
+    right: 0;
+  }
+
+  .imm-sch-url-container {
+    bottom: 500px;
+    padding: 32px;
+  }
+}
